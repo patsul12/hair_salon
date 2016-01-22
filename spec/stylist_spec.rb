@@ -13,6 +13,14 @@ describe Stylist do
     end
   end
 
+  describe '#find' do
+    it 'finds a stylist(s) in the database' do
+      test_stylist = Stylist.new({name: 'Franz'})
+      test_stylist.save
+      expect(Stylist.find("Franz")).to(eq([test_stylist]))
+    end
+  end
+
   describe '#==' do
     it 'returns true if two object share the same properties' do
       test_stylist = Stylist.new({name: 'Franz'})
