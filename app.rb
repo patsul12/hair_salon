@@ -29,6 +29,7 @@ end
 get '/stylists/:id' do
   @stylist = Stylist.find(params[:id])
   @clients = @stylist.show_clients
+  @all_clients = Client.all
   erb :stylist
 end
 
