@@ -1,0 +1,14 @@
+<h1>Hair Salon</h1>
+
+<% @stylists.each do |stylist| %>
+  <div class="">
+    <p>
+      <%= stylist.name %>
+    </p>
+  </div>
+<% end %>
+
+<form class="" action="/stylist/add" method="post">
+  <input type="text" name="name">
+  <button type="submit" name="add_stylist">Add Stylist</button>
+</form>
