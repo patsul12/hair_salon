@@ -21,6 +21,16 @@ describe Stylist do
     end
   end
 
+  describe '#show_clients' do
+    it 'returns an array of all clients that are linked to a given stylist' do
+      test_stylist = Stylist.new({name: 'Franz', id: 1})
+      test_stylist.save
+      test_client = Client.new({name: 'Leipzeg', stylist_id: 1 })
+      test_client.save
+      expect(test_stylist.show_clients).to(eq([test_client]))
+    end
+  end
+
   describe '#==' do
     it 'returns true if two object share the same properties' do
       test_stylist = Stylist.new({name: 'Franz'})

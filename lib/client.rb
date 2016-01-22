@@ -1,12 +1,14 @@
 class Client
-  attr_reader :id, :name
+  attr_accessor :name, :stylist_id
+  attr_reader :id
 
   def initialize(attributes)
     @name = attributes[:name]
+    @stylist_id = attributes[:stylist_id]
   end
 
   def save
-    DB.exec("INSERT INTO clients (name) VALUES ('#{self.name}');")
+    DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id.to_i});")
   end
 
   def ==(other_client)
