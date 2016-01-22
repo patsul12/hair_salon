@@ -3,6 +3,11 @@
 <% if !@clients.empty? %>
   <% @clients.each do |client| %>
     <p><%= client.name %></p>
+    <form action="/stylists/<%= @stylist.id %>/update_clients" method="post">
+      <input hidden name="_method" value="patch">
+      <input hidden name="name" value="<%= client.name %>">
+      <button type="submit">Remove</button>
+    </form>
   <% end %>
 <% end %>
 

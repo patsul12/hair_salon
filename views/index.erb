@@ -1,24 +1,44 @@
-<h1>Hair Salon</h1>
-
-<h3>Stylists</h3>
-<% @stylists.each do |stylist| %>
-  <div class="">
-    <p>
-      <a href="/stylists/<%= stylist.id %>"><%= stylist.name %></a>
-    </p>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="well">
+      <h3>Stylists</h3>
+      <% @stylists.each do |stylist| %>
+        <div class="">
+          <p>
+            <a href="/stylists/<%= stylist.id %>"><%= stylist.name %></a>
+            <form action="/stylists/delete" method="post">
+              <input hidden name="_method" value="delete">
+              <input hidden name="name" value="<%= stylist.name %>">
+              <button type="submit">Delete Stylist</button>
+            </form>
+          </p>
+        </div>
+      <% end %>
+      <form class="" action="/stylists/add" method="post">
+        <input type="text" name="name">
+        <button type="submit" name="add_stylist" class="btn btn-primary">Add Stylist</button>
+      </form>
+    </div>
   </div>
-<% end %>
-
-<h3>Clients</h3>
-<% @clients.each do |client| %>
-  <div class="">
-    <p>
-      <a href="/clients/<%= client.id %>"><%= client.name %></a>
-    </p>
+  <div class="col-xs-6">
+    <div class="well">
+      <h3>Clients</h3>
+      <% @clients.each do |client| %>
+        <div class="">
+          <p>
+            <a href="/clients/<%= client.id %>"><%= client.name %></a>
+            <form action="/clients/delete" method="post">
+              <input hidden name="_method" value="delete">
+              <input hidden name="name" value="<%= client.name %>">
+              <button type="submit">Delete Client</button>
+            </form>
+          </p>
+        </div>
+      <% end %>
+      <form class="" action="/clients/add" method="post">
+        <input type="text" name="name">
+        <button type="submit" name="add_stylist" class="btn btn-primary">Add Client</button>
+      </form>
+    </div>
   </div>
-<% end %>
-
-<form class="" action="/stylists/add" method="post">
-  <input type="text" name="name">
-  <button type="submit" name="add_stylist">Add Stylist</button>
-</form>
+</div>

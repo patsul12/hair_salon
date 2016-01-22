@@ -19,6 +19,13 @@ post '/stylists/add' do
   redirect '/'
 end
 
+delete '/stylists/delete' do
+  name = params[:name]
+  stylist = Stylist.find_by_name(name)
+  stylist.each {|s| s.remove}
+  redirect '/'
+end
+
 get '/stylists/:id' do
   @stylist = Stylist.find(params[:id])
   @clients = @stylist.show_clients
@@ -27,15 +34,36 @@ end
 
 post '/stylists/:id/add' do
   @stylist = Stylist.find(params[:id])
-  client = Client.find(params[:client_name])
-  if !client
+  client = Client.find_by_name(params[:client_name])
+  if client.empty?
     Client.new({name: params[:client_name], stylist_id: @stylist.id}).save
+  else
+    client.each { |c| c.update_stylist(@stylist.id) }
   end
   redirect "/stylists/#{@stylist.id}"
+end
+
+patch '/stylists/:id/update_clients' do
+  client = Client.find_by_name(params[:name])
+  client.each { |c| c.update_stylist(nil) }
+  redirect "/stylists/#{params[:id]}"
 end
 
 get '/clients/:id' do
   @client = Client.find(params[:id])
   @stylist = Stylist.find(@client.stylist_id)
   erb :client
+end
+
+post '/clients/add' do
+  name = params[:name]
+  Client.new({name: name}).save
+  redirect '/'
+end
+
+delete '/clients/delete' do
+  name = params[:name]
+  client = Client.find_by_name(name)
+  client.each {|c| c.remove}
+  redirect '/'
 end

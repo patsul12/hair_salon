@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
     <meta charset="utf-8">
     <title>Hair Salon</title>
   </head>
   <body>
-    <%= yield %>
-    <button type="button" name="button"><a href="/">Home</a></button>
+    <div class="container">
+      <div class="page-header col-xs-12">
+        <a href='/'>
+          <div class="col-xs-3">
+            <img style="width: 100px; height: 125px;" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRj8mePyCtLDof4m6vZeT6gcuNLSGU_p5fGwvcZqSmDwobmlK7GNQ" class="img-responsive img-circle img-thumbnail">
+          </div>
+          <div class="col-xs-9">
+            <h1>Hair Salon</h1>
+          </div>
+        </a>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
