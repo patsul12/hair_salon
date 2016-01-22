@@ -14,7 +14,7 @@ get '/' do
 end
 
 post '/stylists/add' do
-  name = params[:name]
+  name = params[:stylist_name]
   Stylist.new({name: name}).save
   redirect '/'
 end
@@ -69,7 +69,7 @@ patch '/clients/:id/update' do
 end
 
 post '/clients/add' do
-  name = params[:name]
+  name = params[:client_name]
   Client.new({name: name}).save
   redirect '/'
 end
