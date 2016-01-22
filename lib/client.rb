@@ -4,6 +4,7 @@ class Client
 
   def initialize(attributes)
     @name = attributes[:name]
+    @id = attributes[:id]
     @stylist_id = attributes[:stylist_id]
   end
 
@@ -15,15 +16,14 @@ class Client
     self.name == other_client.name
   end
 
-  def self.find(name)
-    returned_clients = DB.exec("SELECT * FROM clients WHERE name = '#{name}';")
-    clients = []
-    returned_clients.each do |client|
-      name = client["name"]
-      temp_client = Stylist.new({name: name})
-      clients << temp_client
+  def self.find(id)
+    found_client = nil
+    Client.all.each do |client|
+      if client.id == id
+        found_client = client
+      end
     end
-    clients
+    found_client
   end
 
   def self.all
@@ -31,7 +31,9 @@ class Client
     clients = []
     returned_clients.each do |client|
       name = client["name"]
-      temp_client = Stylist.new({name: name})
+      id = client["id"]
+      stylist_id = client["stylist_id"]
+      temp_client = Client.new({name: name, id: id, stylist_id: stylist_id})
       clients << temp_client
     end
     clients

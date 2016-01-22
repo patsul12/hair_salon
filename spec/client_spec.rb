@@ -13,14 +13,6 @@ describe Client do
     end
   end
 
-  describe '#find' do
-    it 'finds a stylist(s) in the database' do
-      test_client = Client.new({name: 'Franz'})
-      test_client.save
-      expect(Client.find("Franz")).to(eq([test_client]))
-    end
-  end
-
   describe '#==' do
     it 'returns true if two object share the same properties' do
       test_client = Client.new({name: 'Franz'})

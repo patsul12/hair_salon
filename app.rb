@@ -5,7 +5,7 @@ require './lib/client'
 require './lib/stylist'
 require 'pg'
 
-DB = PG.connect({dbname: 'hair_salon_test'})
+DB = PG.connect({dbname: 'hair_salon'})
 
 get '/' do
   @stylists = Stylist.all
@@ -28,8 +28,14 @@ end
 post '/stylists/:id/add' do
   @stylist = Stylist.find(params[:id])
   client = Client.find(params[:client_name])
-  if client.empty?
+  if !client
     Client.new({name: params[:client_name], stylist_id: @stylist.id}).save
   end
   redirect "/stylists/#{@stylist.id}"
+end
+
+get '/clients/:id' do
+  @client = Client.find(params[:id])
+  @stylist = Stylist.find(@client.stylist_id)
+  erb :client
 end
