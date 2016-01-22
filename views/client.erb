@@ -1,3 +1,8 @@
 <h1><%= @client.name %></h1>
+<form class="" action="/clients/<%= @client.id %>/update" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="name">
+  <button type="submit" name="button" class="btn btn-default">Update Name</button>
+</form>
 
 <h3>Styled by: <% if @stylist %><%= @stylist.name %><% end %></h3>

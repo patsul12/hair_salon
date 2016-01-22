@@ -9,7 +9,7 @@
             <form action="/stylists/delete" method="post">
               <input hidden name="_method" value="delete">
               <input hidden name="name" value="<%= stylist.name %>">
-              <button type="submit">Delete Stylist</button>
+              <button class="btn btn-danger" type="submit">Delete Stylist</button>
             </form>
           </p>
         </div>
@@ -30,7 +30,7 @@
             <form action="/clients/delete" method="post">
               <input hidden name="_method" value="delete">
               <input hidden name="name" value="<%= client.name %>">
-              <button type="submit">Delete Client</button>
+              <button class="btn btn-danger" type="submit">Delete Client</button>
             </form>
           </p>
         </div>

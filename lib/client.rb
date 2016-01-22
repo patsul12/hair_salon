@@ -16,6 +16,10 @@ class Client
     self.name == other_client.name
   end
 
+  def update(name)
+    DB.exec("UPDATE clients SET name = '#{name}' WHERE id = #{self.id};")
+  end
+
   def update_stylist(id)
     DB.exec("UPDATE clients SET stylist_id = #{id.to_i} WHERE id = #{self.id};")
   end

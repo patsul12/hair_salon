@@ -44,6 +44,12 @@ post '/stylists/:id/add' do
   redirect "/stylists/#{@stylist.id}"
 end
 
+patch '/stylists/:id/update' do
+  @stylist = Stylist.find(params[:id])
+  @stylist.update(params[:name])
+  redirect "/stylists/#{@stylist.id}"
+end
+
 patch '/stylists/:id/update_clients' do
   client = Client.find_by_name(params[:name])
   client.each { |c| c.update_stylist(nil) }
@@ -54,6 +60,12 @@ get '/clients/:id' do
   @client = Client.find(params[:id])
   @stylist = Stylist.find(@client.stylist_id)
   erb :client
+end
+
+patch '/clients/:id/update' do
+  @client = Client.find(params[:id])
+  @client.update(params[:name])
+  redirect "/clients/#{@client.id}"
 end
 
 post '/clients/add' do

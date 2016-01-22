@@ -15,6 +15,10 @@ class Stylist
     DB.exec("DELETE FROM stylists WHERE id = #{self.id};")
   end
 
+  def update(name)
+    DB.exec("UPDATE stylists SET name = '#{name}' WHERE id = #{self.id};")
+  end
+
   def ==(other_stylist)
     self.name == other_stylist.name
   end
