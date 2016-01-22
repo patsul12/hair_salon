@@ -13,14 +13,6 @@ describe Stylist do
     end
   end
 
-  describe '#find' do
-    it 'finds a stylist(s) in the database' do
-      test_stylist = Stylist.new({name: 'Franz'})
-      test_stylist.save
-      expect(Stylist.find("Franz")).to(eq([test_stylist]))
-    end
-  end
-
   describe '#show_clients' do
     it 'returns an array of all clients that are linked to a given stylist' do
       test_stylist = Stylist.new({name: 'Franz', id: 1})

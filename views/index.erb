@@ -1,14 +1,24 @@
 <h1>Hair Salon</h1>
 
+<h3>Stylists</h3>
 <% @stylists.each do |stylist| %>
   <div class="">
     <p>
-      <%= stylist.name %>
+      <a href="/stylists/<%= stylist.id %>"><%= stylist.name %></a>
     </p>
   </div>
 <% end %>
 
-<form class="" action="/stylist/add" method="post">
+<h3>Clients</h3>
+<% @clients.each do |client| %>
+  <div class="">
+    <p>
+      <a href="/clients/<%= client.id %>"><%= client.name %></a>
+    </p>
+  </div>
+<% end %>
+
+<form class="" action="/stylists/add" method="post">
   <input type="text" name="name">
   <button type="submit" name="add_stylist">Add Stylist</button>
 </form>

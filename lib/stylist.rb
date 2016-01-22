@@ -1,3 +1,4 @@
+require "pry"
 class Stylist
   attr_reader :id, :name
 
@@ -25,15 +26,14 @@ class Stylist
     clients
   end
 
-  def self.find(name)
-    returned_stylists = DB.exec("SELECT * FROM stylists WHERE name = '#{name}';")
-    stylists = []
-    returned_stylists.each do |stylist|
-      name = stylist["name"]
-      temp_stylist = Stylist.new({name: name})
-      stylists << temp_stylist
+  def self.find(id)
+    found_stylist = nil
+    Stylist.all.each do |stylist|
+      if stylist.id == id
+        found_stylist = stylist
+      end
     end
-    stylists
+    found_stylist
   end
 
   def self.all
@@ -41,7 +41,8 @@ class Stylist
     stylists = []
     returned_stylists.each do |stylist|
       name = stylist["name"]
-      temp_stylist = Stylist.new({name: name})
+      id = stylist["id"]
+      temp_stylist = Stylist.new({name: name, id: id})
       stylists << temp_stylist
     end
     stylists

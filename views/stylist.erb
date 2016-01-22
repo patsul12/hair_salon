@@ -1,0 +1,12 @@
+<h1><%= @stylist.name %></h1>
+
+<% if !@clients.empty? %>
+  <% @clients.each do |client| %>
+    <p><%= client.name %></p>
+  <% end %>
+<% end %>
+
+<form class="" action="/stylists/<%= @stylist.id %>/add" method="post">
+  <input type="text" name="client_name" required>
+  <button type="submit">Add Client</button>
+</form>
