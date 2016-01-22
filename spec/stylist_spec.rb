@@ -12,4 +12,12 @@ describe Stylist do
       expect(Stylist.all).to(eq([test_stylist]))
     end
   end
+
+  describe '#==' do
+    it 'returns true if two object share the same properties' do
+      test_stylist = Stylist.new({name: 'Franz'})
+      test_stylist2 = Stylist.new({name: 'Franz'})
+      expect(test_stylist).to(eq(test_stylist2))
+    end
+  end
 end
